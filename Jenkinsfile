@@ -50,8 +50,12 @@ pipeline {
  stage('Run Docker container on remote hosts') {
              
             steps {
-                sh "docker -H ssh://sshkeypair@172.31.20.232 run -d -p 8003:8080 akshu20791/samplewebapp"
- 
+                script {
+                    def dockerCmd = 'docker run -d -p 8003:8080 akshu20791/samplewebapp'
+                    sshagent(['sshkeypair']) {
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.20.232 ${dockerCmd}"
+                    }
+                }
             }
         }
     }
