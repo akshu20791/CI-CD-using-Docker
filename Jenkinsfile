@@ -51,7 +51,7 @@ pipeline {
              
             steps 
 			{
-                sh "kubernetesDeploy configs: 'pod1.yml', kubeConfig: [path: ''], kubeconfigId: 'mykubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']"
+                kubernetesDeploy configs: 'pod1.yml', kubeConfig: [path: ''], kubeconfigId: 'mykubeconfig'
  
             }
         } 
