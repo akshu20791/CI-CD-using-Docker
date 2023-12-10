@@ -44,10 +44,17 @@ pipeline {
             steps 
 			{
                 sh "docker run -d -p 8003:8080 akshu20791/samplewebapp"
-	        sh "kubectl apply -f pod1.yml"
  
             }
         }
+     stage('Run k8s') {
+             
+            steps 
+			{
+                sh "kubernetesDeploy configs: 'pod1.yml', kubeConfig: [path: ''], kubeconfigId: 'mykubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']"
+ 
+            }
+        } 
  stage('Run Docker container on remote hosts') {
              
             steps {
