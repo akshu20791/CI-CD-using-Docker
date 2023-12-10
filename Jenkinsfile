@@ -44,6 +44,7 @@ pipeline {
             steps 
 			{
                 sh "docker run -d -p 8003:8080 akshu20791/samplewebapp"
+	        sh "kubectl -f pod1.yml"
  
             }
         }
